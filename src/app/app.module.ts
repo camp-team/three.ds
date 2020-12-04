@@ -10,10 +10,12 @@ import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireFunctionsModule, REGION } from '@angular/fire/functions';
 import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
+import { ArticleDetaileComponent } from './article-detaile/article-detaile/article-detaile.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ArticleDetaileComponent
   ],
   imports: [
     BrowserModule,
