@@ -6,6 +6,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ImageObjectComponent } from './image-object/image-object.component';
 import { ArticleCardComponent } from './article-card/article-card.component';
+import { CreateArticleDialogComponent } from './create-article-dialog/create-article-dialog.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { ArticleCardComponent } from './article-card/article-card.component';
     ArticleCardComponent,
     HeaderComponent,
     FooterComponent,
-    ImageObjectComponent
+    ImageObjectComponent,
+    CreateArticleDialogComponent
   ],
   imports: [
     CommonModule,
@@ -23,7 +25,8 @@ import { ArticleCardComponent } from './article-card/article-card.component';
     ArticleCardComponent,
     HeaderComponent,
     FooterComponent,
-    ImageObjectComponent
+    ImageObjectComponent,
+    CreateArticleDialogComponent
   ]
 })
 export class SharedModule { }
