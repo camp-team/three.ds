@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "threed-bc539": {
+      "hosting": {
+        "threed": [
+          "threed-bc539"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "threed-bc539"
+  }
+}
