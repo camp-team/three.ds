@@ -2,7 +2,7 @@
   <div class="container">
     <P class="hero__logo-title">THREED</P>
     <div class="hero__login">
-      <button (click)="login()" class="login-button">
+      <button mat-ripple (click)="login()" class="login-button">
         ログイン
       </button>
     </div>
@@ -12,10 +12,7 @@
   <div class="container">
     <div class="description__box">
       <div class="description__text">
-        <p>
-          ふぁふぁふぁふぁあああ あああああ あああああああああ あああああああ
-          あああああああ
-        </p>
+        <p>3Dデータを気軽に投稿できます。</p>
       </div>
       <div class="description__image">
         <img
@@ -37,10 +34,13 @@
     <div class="login__box">
       <div class="login__texts">
         <p>
-          ふぁふぁふぁふぁあああ あああああ あああああああああ あああああああ
-          あああああああ
+          自信作はありますか？<br />
+          さっそく投稿してみましょう！
         </p>
-        <button (click)="login()" class="login-button">ログイン</button>
+
+        <button mat-ripple (click)="login()" class="login-button">
+          ログイン
+        </button>
       </div>
       <div class="login__image">
         <img src="assets/images/login-image.svg" alt="" />
