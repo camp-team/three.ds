@@ -1,1 +1,39 @@
-<p>create-article-dialog works!</p>
+<div class="create-wrapper">
+  <div class="heading">
+    <h2 class="heading__text">記事を作成</h2>
+  </div>
+
+  <form class="form" [formGroup]="form" (ngSubmit)="submit()">
+    <mat-form-field class="form__title">
+      <input
+        matInput
+        formControlName="title"
+        type="text"
+        autocomplete="off"
+        placeholder="タイトル"
+        required
+      />
+      <mat-error *ngIf="titleControl.hasError('required')"
+        >必須入力です</mat-error
+      >
+      <mat-error *ngIf="titleControl.hasError('maxlength')"
+        >文字数は最大で40文字までです</mat-error
+      >
+    </mat-form-field>
+
+    <mat-dialog-actions>
+      <button
+        mat-button
+        type="submit"
+        class="form__submit"
+        [mat-dialog-close]="true"
+        [disabled]="form.invalid || form.pristine"
+      >
+        作成
+      </button>
+      <button class="form__cancel" mat-button matDialogClose type="button">
+        キャンセル
+      </button>
+    </mat-dialog-actions>
+  </form>
+</div>
