@@ -1,0 +1,212 @@
+@import 'mixins';
+@import 'variables';
+@import '~@angular/material/theming';
+
+section {
+  text-align: center;
+}
+
+.hero {
+  margin-bottom: 300px;
+  text-align: center;
+  background: url(/assets/images/web-hero-image.svg) center/contain no-repeat;
+
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  &__logo-title {
+    position: relative;
+    font-family: 'Bungee';
+    font-size: 176px;
+    color: #333333;
+    margin-bottom: 88px;
+    &::before {
+      content: 'THREED';
+      color: #898383;
+      z-index: -1;
+      position: absolute;
+      top: 0;
+      left: 16px;
+      right: 0;
+    }
+  }
+}
+
+.login-button {
+  outline: none;
+  padding: 24px 114px;
+  background-color: $color-main;
+  border-radius: 30px;
+  border: none;
+  color: #fff;
+  font-size: 30px;
+  font-weight: 500;
+  font-family: 'Hiragino Kaku Gothic ProN';
+  transition: opacity 0.3s;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.description {
+  background-color: #a2c7dd;
+  position: relative;
+  margin-bottom: 600px;
+  &::before,
+  &::after {
+    content: '';
+    width: 100%;
+    height: 500px;
+    background: url(/assets/images/background-triangle.svg) center no-repeat;
+    position: absolute;
+    left: 0;
+    z-index: -1;
+  }
+  &::before {
+    top: -500px;
+  }
+  &::after {
+    bottom: -500px;
+    transform: scale(1, -1);
+  }
+  &__box {
+    display: flex;
+    padding-top: 47px;
+    padding-bottom: 38.4px;
+  }
+  &__text {
+    margin-top: 206px;
+    margin-bottom: 331px;
+    margin-right: 80px;
+    font-size: 42px;
+    color: #333333;
+    letter-spacing: 0.3em;
+    text-align: left;
+  }
+  &__image--top {
+    max-width: 235.25px;
+    margin-bottom: 110.7px;
+  }
+  &__image--bottom {
+    max-width: 733.53px;
+  }
+}
+
+.login {
+  margin-top: 378px;
+  margin-bottom: 128px;
+  &__box {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+  }
+  &__image {
+    max-width: 622.78px;
+    margin-right: 80px;
+  }
+  &__texts p {
+    white-space: nowrap;
+    color: #333333;
+    max-width: 400px;
+    font-size: 42px;
+    text-align: left;
+    margin-bottom: 94px;
+  }
+}
+
+// モバイル用スタイル
+@include sp {
+  .welcome-container {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+  .hero {
+    text-align: center;
+    margin-bottom: 0;
+    background: url(/assets/images/mobile-hero-image.svg) center/cover no-repeat;
+    position: relative;
+    z-index: -2;
+    &__logo-title {
+      margin: 0 auto 24px;
+      max-width: 256px;
+      font-size: 60px;
+      &::before {
+        content: 'THREED';
+        color: #898383;
+        z-index: -1;
+        position: absolute;
+        top: 0;
+        left: 6px;
+        right: 0;
+      }
+    }
+  }
+  .login-button {
+    padding: 16px 74px;
+    background-color: $color-main;
+    border-radius: 30px;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 500;
+    font-family: 'Hiragino Kaku Gothic ProN';
+  }
+  .description {
+    background-color: #a2c7dd;
+    position: relative;
+    margin-bottom: 0px;
+    &::before,
+    &::after {
+      content: '';
+      width: 100%;
+      height: 800px;
+      background: url(/assets/images/background-triangle.svg) center no-repeat;
+      position: absolute;
+      left: 0;
+      z-index: -1;
+    }
+    &::before {
+      top: -500px;
+    }
+    &::after {
+      bottom: -500px;
+      transform: scale(1, -1);
+    }
+    &__box {
+      display: inline;
+      padding-top: 33px;
+      padding-bottom: 54.4px;
+    }
+    &__text {
+      margin: 0 72px 92px;
+      max-width: 400px;
+      font-size: 20px;
+      text-align: left;
+    }
+    &__image--top {
+      max-width: 79.02px;
+      margin-bottom: 37.2px;
+    }
+    &__image--bottom {
+      max-width: 280px;
+    }
+  }
+  .login {
+    margin-top: 234px;
+    &__box {
+      display: inline;
+    }
+    &__image {
+      margin: 105px auto 0;
+      max-width: 273.44px;
+    }
+    &__texts p {
+      white-space: nowrap;
+      font-size: 20px;
+      text-align: center;
+      margin: 0 0 16px;
+    }
+  }
+}

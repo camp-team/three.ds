@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="754" height="188" viewBox="0 0 754 188">
+  <defs>
+    <filter id="Threed" x="0" y="0" width="754" height="188" filterUnits="userSpaceOnUse">
+      <feOffset dx="6" dy="6" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="グループ_1" data-name="グループ 1" transform="translate(-486 -295)">
+    <text id="Threed-2" data-name="Threed" transform="translate(492 446)" fill="#898383" font-size="176" font-family="Bungee-Regular, Bungee"><tspan x="0" y="0">Threed</tspan></text>
+    <g transform="matrix(1, 0, 0, 1, 486, 295)" filter="url(#Threed)">
+      <text id="Threed-3" data-name="Threed" transform="translate(0 151)" fill="#333" font-size="176" font-family="Bungee-Regular, Bungee"><tspan x="0" y="0">Threed</tspan></text>
+    </g>
+  </g>
+</svg>

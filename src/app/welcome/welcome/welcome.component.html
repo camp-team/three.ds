@@ -1,1 +1,50 @@
-<p>welcome works!</p>
+<section class="hero">
+  <div class="container">
+    <P class="hero__logo-title">THREED</P>
+    <div class="hero__login">
+      <button mat-ripple (click)="login()" class="login-button">
+        ログイン
+      </button>
+    </div>
+  </div>
+</section>
+<section class="description">
+  <div class="container">
+    <div class="description__box">
+      <div class="description__text">
+        <p>3Dデータを気軽に投稿できます。</p>
+      </div>
+      <div class="description__image">
+        <img
+          class="description__image description__image--top"
+          src="assets/images/description-image-cloud.svg"
+          alt=""
+        />
+        <img
+          class="description__image description__image--bottom"
+          src="assets/images/description-image-desktop.svg"
+          alt=""
+        />
+      </div>
+    </div>
+  </div>
+</section>
+<section class="login">
+  <div class="container">
+    <div class="login__box">
+      <div class="login__texts">
+        <p>
+          自信作はありますか？<br />
+          さっそく投稿してみましょう！
+        </p>
+
+        <button mat-ripple (click)="login()" class="login-button">
+          ログイン
+        </button>
+      </div>
+      <div class="login__image">
+        <img src="assets/images/login-image.svg" alt="" />
+      </div>
+    </div>
+  </div>
+</section>
