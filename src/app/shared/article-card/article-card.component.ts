@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Article } from 'src/app/interfaces/article';
+import { Article } from 'src/app/interfaces/Article';
 import { UserData } from 'src/app/interfaces/user-data';
 
 @Component({
