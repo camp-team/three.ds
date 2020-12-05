@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Article } from 'src/app/interfaces/article';
+import { UserData } from 'src/app/interfaces/user-data';
 
 @Component({
   selector: 'app-article-card',
@@ -6,10 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./article-card.component.scss']
 })
 export class ArticleCardComponent implements OnInit {
+  @Input() user: UserData;
+  @Input() article: Article;
+
+  // cardのaタグのリンクをこれに差し替えて使う
+  // [routerLink]="['/article-detail/', article.id]"
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
+  deleteArticle(id: string): void {
+    // 下記でarticleServiceのdelete関数呼び出す
+    console.log(id);
+  }
 }

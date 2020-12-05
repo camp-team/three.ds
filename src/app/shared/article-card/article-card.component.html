@@ -1,1 +1,45 @@
-<p>article-card works!</p>
+<a class="card">
+  <img
+    class="card__image"
+    onError="this.src='/assets/images/fake.png'"
+    [src]="article.image"
+    alt="記事の画像"
+  />
+  <div class="card__contents">
+    <img
+      class="card__avatar"
+      onError="this.src='/assets/images/fake.png'"
+      [src]="user.avatarURL"
+      alt="ユーザーアバター"
+    />
+    <div class="card__items">
+      <p class="card__title">
+        {{ article.title ? article.title : 'タイトル' }}
+      </p>
+      <span class="card__date">
+        投稿日:{{
+          article.createdAt
+            ? (article.createdAt | date: 'yyyy/MM/dd')
+            : '2020/12/05'
+        }}
+      </span>
+    </div>
+    <button
+      class="card__menu-btn"
+      [matMenuTriggerFor]="menuRef"
+      mat-icon-button
+    >
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menuRef="matMenu">
+      <button
+        *ngIf="user.uid === article.ownerId"
+        (click)="deleteArticle(article.id)"
+        mat-menu-item
+      >
+        <mat-icon>delete</mat-icon>
+        <span>削除</span>
+      </button>
+    </mat-menu>
+  </div>
+</a>
