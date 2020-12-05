@@ -9,7 +9,8 @@ import { ArticleCardComponent } from './article-card/article-card.component';
 import { CreateArticleDialogComponent } from './create-article-dialog/create-article-dialog.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatDividerModule } from '@angular/material/divider';
+import { MatButtonModule } from '@angular/material/button';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { MatDividerModule } from '@angular/material/divider';
     SharedRoutingModule,
     MatIconModule,
     MatMenuModule,
-    MatDividerModule,
+    MatButtonModule,
+    MatDialogModule,
   ],
   exports: [
     ArticleCardComponent,

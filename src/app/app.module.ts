@@ -11,6 +11,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireFunctionsModule, REGION } from '@angular/fire/functions';
 import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { CreateArticleDialogComponent } from './shared/create-article-dialog/create-article-dialog.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,9 @@ import { NotFoundComponent } from './not-found/not-found.component';
   providers: [
     { provide: REGION, useValue: 'asia-northeast1' },
     { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2500 } },
-  ], bootstrap: [AppComponent]
+  ], bootstrap: [AppComponent],
+  entryComponents: [
+    CreateArticleDialogComponent
+  ]
 })
 export class AppModule { }
