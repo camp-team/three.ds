@@ -44,7 +44,7 @@ body {
 }
 body {
   margin: 0;
-  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  font-family: 'Noto Sans JP', Roboto, 'Helvetica Neue', sans-serif;
 }
 
 img {
@@ -65,4 +65,10 @@ a {
   @include sp {
     padding: 0 16px;
   }
+}
+
+.article-layout {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
 }

@@ -1,2 +1,46 @@
-<p>header works!</p>
-<button (click)="openDialog()">create</button>
+<div class="header">
+  <div class="container">
+    <div class="header__inner">
+      <h1 class="header__title">
+        <a href="" class="header__logo-link">Threed</a>
+      </h1>
+
+      <div class="header__actions">
+        <div class="header__icons">
+          <ng-container
+            *ngIf="authService.user$ | async as user; else notLogin"
+          >
+            <button
+              (click)="createArticleDialog()"
+              class="header__add"
+              mat-icon-button
+            >
+              <mat-icon>add</mat-icon>
+            </button>
+
+            <img
+              [matMenuTriggerFor]="menuRef"
+              class="header__account"
+              [src]="user.avatarURL"
+              alt=""
+            />
+          </ng-container>
+          <mat-menu #menuRef="matMenu">
+            <a mat-menu-item href="" routerLink="/my-page"
+              ><mat-icon>account_circle</mat-icon> <span>マイページ</span></a
+            >
+            <button mat-menu-item (click)="logout()">
+              <mat-icon>exit_to_app</mat-icon>
+              <span>ログアウト</span>
+            </button>
+          </mat-menu>
+          <ng-template #notLogin>
+            <button (click)="login()" class="header__button" mat-raised-button>
+              ログイン
+            </button>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

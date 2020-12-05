@@ -1,0 +1,48 @@
+@import 'mixins';
+@import 'variables';
+
+.header {
+  background-color: $color-light;
+  &__inner {
+    text-align: center;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &__settings {
+    color: $color-accent;
+  }
+  &__title {
+    font-size: 18px;
+    @include sp {
+      transform: translateX(50%);
+    }
+  }
+  &__logo-link {
+    color: #333333;
+    text-decoration: none;
+    font-family: 'Bungee';
+  }
+  &__icons {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__add {
+    color: $color-accent;
+    text-align: center;
+    margin-right: 16px;
+  }
+  &__account {
+    cursor: pointer;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: none;
+    background-color: #000;
+    background-size: cover;
+  }
+  &__button {
+    color: #000;
+  }
+}
