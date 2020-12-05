@@ -7,7 +7,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ImageObjectComponent } from './image-object/image-object.component';
 import { ArticleCardComponent } from './article-card/article-card.component';
 import { CreateArticleDialogComponent } from './create-article-dialog/create-article-dialog.component';
-
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -20,6 +20,7 @@ import { CreateArticleDialogComponent } from './create-article-dialog/create-art
   imports: [
     CommonModule,
     SharedRoutingModule,
+    MatDialogModule,
   ],
   exports: [
     ArticleCardComponent,
