@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Router } from '@angular/router';
 import { Article } from '../interfaces/Article';
 
 @Injectable({
@@ -8,7 +9,8 @@ import { Article } from '../interfaces/Article';
 export class ArticleService {
 
   constructor(
-    private db: AngularFirestore
+    private db: AngularFirestore,
+    private router: Router
   ) { }
 
   async createArticle(
@@ -19,6 +21,8 @@ export class ArticleService {
       id,
       ...article,
     };
-    await this.db.doc<Article>(`posts/${id}`).set(newValue);
+    await this.db.doc<Article>(`posts/${id}`).set(newValue).then(() => {
+      this.router.navigateByUrl(`article/${id}`);
+    });
   }
 }

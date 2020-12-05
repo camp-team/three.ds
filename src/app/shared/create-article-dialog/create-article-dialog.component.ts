@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
 import * as firebase from 'firebase';
 import { ArticleService } from 'src/app/services/article.service';
 import { AuthService } from 'src/app/services/auth.service';
@@ -25,8 +24,7 @@ export class CreateArticleDialogComponent implements OnInit {
     private fb: FormBuilder,
     private authService: AuthService,
     private articleService: ArticleService,
-    private snackBar: MatSnackBar,
-    private router: Router
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -42,7 +40,6 @@ export class CreateArticleDialogComponent implements OnInit {
     };
     this.articleService.createArticle(articleValue).then(() => {
       this.snackBar.open('作成されました！', null);
-      this.router.navigateByUrl('/');
     });
   }
 
