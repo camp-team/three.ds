@@ -13,13 +13,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  logout(): void {
-    this.authService.logout();
-  }
-  login(): void {
-    this.authService.googleLogin();
-  }
-
   createArticleDialog(): void {
     this.dialog.open(CreateArticleDialogComponent, { width: '1200px' });
   }
