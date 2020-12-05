@@ -1,0 +1,39 @@
+.header {
+  &__inner {
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+  }
+  &__settings {
+    color: #28385e;
+  }
+  &__title {
+    font-size: 18px;
+    display: block;
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    -webkit-transform: translateY(-50%) translateX(-50%);
+  }
+  &__logo-link {
+    color: #333333;
+    text-decoration: none;
+    font-family: 'Bungee';
+  }
+  &__account {
+    cursor: pointer;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: none;
+    background-color: #000;
+    background-size: cover;
+  }
+  &__button {
+    color: #000;
+  }
+}
