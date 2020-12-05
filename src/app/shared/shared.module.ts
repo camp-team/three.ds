@@ -11,6 +11,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,9 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatMenuModule,
     MatButtonModule,
     MatDialogModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatInputModule
   ],
   exports: [
     ArticleCardComponent,
