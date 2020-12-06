@@ -37,4 +37,12 @@ export class ArticleService {
       .put(file);
     return result.ref.getDownloadURL();
   }
+
+  getArticles() {
+    return this.db.collection<Article>('posts').valueChanges();
+  }
+
+  deleteArticle(id: string): Promise<void> {
+    return this.db.doc<Article>(`posts/${id}`).delete();
+  }
 }
