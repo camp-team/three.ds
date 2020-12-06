@@ -1,1 +1,31 @@
-<p>article-detail works!</p>
+<!-- <ng-container *ngIf="article$ | async as article"> -->
+<div class="detail">
+  <div class="container">
+    <!-- 3d画像表示位置(detail__display) -->
+    <div class="detail__display">
+      <img src="assets/images/example-image.png" alt="" />
+    </div>
+<div class="detail__title">
+  <p>データタイトルデータタイトル</p>
+  <!-- article.ownerId -->
+  <button mat-icon-button *ngIf="'llslxLb1zTfBbCYggJfOWUDIBBy1'===authServise.uid">
+    <mat-icon>create</mat-icon>
+  </button>
+</div>
+<div class="detail__users">
+<div class="detail__icon">
+  <img src="assets/images/example-image.png" alt="">
+</div>
+<div class="detail__name">
+  <p>ユーザーネームユーザーネーム</p>
+</div>
+</div>
+<mat-divider></mat-divider>
+<div class="detail__description">
+<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat nesciunt soluta eaque eius corporis quos, fuga dolore dolorum ea ipsum distinctio recusandae incidunt sapiente quae sit? Labore quod temporibus aspernatur.</p>
+
+</div>
+
+  </div>
+</div>
+<!-- </ng-container> -->

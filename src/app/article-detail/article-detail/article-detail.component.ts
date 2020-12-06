@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Article } from 'src/app/interfaces/Article';
 import { ArticleService } from 'src/app/services/article.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-article-detail',
@@ -17,7 +18,8 @@ export class ArticleDetailComponent implements OnInit {
 
   constructor(
     private articleService: ArticleService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public authServise: AuthService
   ) {}
 
   ngOnInit(): void {}
