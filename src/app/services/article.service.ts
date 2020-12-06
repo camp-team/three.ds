@@ -19,9 +19,7 @@ export class ArticleService {
     article: Omit<Article, 'id'>
   ): Promise<void> {
     const id = this.db.createId();
-    console.log(id);
     if (article.image !== undefined) {
-      console.log(article.image);
       article.image = await this.setImageToStorage(id, article.image);
     }
     const newValue: Article = {
