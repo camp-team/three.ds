@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Article } from 'src/app/interfaces/Article';
@@ -28,14 +29,13 @@ export class ArticleDetailComponent implements OnInit {
     description: ['', [Validators.maxLength(this.descriptionMaxLength)]],
   });
 
-  // user$: Observable<UserData> = this.userService.getUser();
-
   constructor(
     private articleService: ArticleService,
     private route: ActivatedRoute,
     public authServise: AuthService,
     private userService: UserService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -54,6 +54,10 @@ export class ArticleDetailComponent implements OnInit {
       title: formData.title,
       description: formData.description,
     };
-    this.articleService.updateArticle(this.articleId, newValue);
+    this.articleService.updateArticle(this.articleId, newValue).then(() => {
+      this.form.markAsPristine();
+      this.snackBar.open('記事を編集しました', null);
+    });
+    this.isEditable = false;
   }
 }
