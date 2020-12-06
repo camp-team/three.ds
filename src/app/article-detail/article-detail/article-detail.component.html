@@ -1,4 +1,4 @@
-<ng-container *ngIf="article$ | async as article">
+<!-- <ng-container *ngIf="article$ | async as article"> -->
   <app-image-object
     [imageURL]="
       'https://firebasestorage.googleapis.com/v0/b/threed-bc539.appspot.com/o/posts%2FLtDGKsIhkQUBlVzVmduP?alt=media&token=89973e74-918a-4f54-a40d-739874c1c7d0'
@@ -7,9 +7,6 @@
 
   <div class="detail">
     <div class="container">
-      <div class="detail__display">
-        <img src="assets/images/example-image.png" alt="" />
-      </div>
       <div class="detail__title">
         <p *ngIf="!isEditable">データタイトルデータタイトル</p>
 
@@ -26,7 +23,6 @@
         </form>
 
         <button
-          *ngIf="!isEditable && article.ownerId === authServise.uid"
           (click)="isEditable = !isEditable"
           mat-icon-button
         >
@@ -59,7 +55,7 @@
             <textarea matInput placeholder="説明"></textarea>
           </mat-form-field>
           <div align="end" class="actions" *ngIf="isEditable">
-            <button class="cancel" mat-button (click)="isEditable = false">
+            <button mat-button (click)="isEditable = false">
               キャンセル
             </button>
             <button mat-raised-button color="primary">保存</button>
@@ -68,4 +64,4 @@
       </div>
     </div>
   </div>
-</ng-container>
+<!-- </ng-container> -->
