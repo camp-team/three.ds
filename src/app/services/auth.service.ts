@@ -13,7 +13,7 @@ import { switchMap } from 'rxjs/operators';
 })
 export class AuthService {
   uid: string;
-
+  afUser$: Observable<firebase.User> = this.afAuth.user;
   user$: Observable<UserData> = this.afAuth.authState.pipe(
     switchMap((afUser) => {
       if (afUser) {

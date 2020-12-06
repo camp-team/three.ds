@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { Router } from '@angular/router';
 import * as firebase from 'firebase';
-import { promise } from 'protractor';
 import { Observable } from 'rxjs';
 import { Article } from '../interfaces/Article';
 
@@ -13,11 +11,10 @@ import { Article } from '../interfaces/Article';
 export class ArticleService {
   constructor(
     private db: AngularFirestore,
-    private router: Router,
     private storage: AngularFireStorage
   ) {}
 
-  async createArticle(article: Omit<Article, 'id'>): Promise<void> {
+  async createArticle(article: Omit<Article, 'id'>): Promise<string> {
     const id = this.db.createId();
     if (article.image !== undefined) {
       article.image = await this.setImageToStorage(id, article.image);
@@ -26,12 +23,8 @@ export class ArticleService {
       id,
       ...article,
     };
-    await this.db
-      .doc<Article>(`posts/${id}`)
-      .set(newValue)
-      .then(() => {
-        this.router.navigateByUrl(`article/${id}`);
-      });
+    await this.db.doc<Article>(`posts/${id}`).set(newValue);
+    return id;
   }
 
   updateArticle(
