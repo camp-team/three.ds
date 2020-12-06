@@ -4,21 +4,33 @@
   <div class="detail">
     <div class="container">
       <div class="detail__title">
-        <p *ngIf="!isEditable">データタイトルデータタイトル</p>
+        <p *ngIf="!isEditable">{{ article.title }}</p>
 
-        <form *ngIf="isEditable" class="form">
+        <form [formGroup]="form" *ngIf="isEditable" class="form">
           <mat-form-field appearance="outline" class="form__input">
             <mat-label>タイトル</mat-label>
             <input
+              formControlName="title"
               matInput
               autocomplete="off"
               placeholder="タイトル"
               type="text"
+              required
             />
           </mat-form-field>
+          <mat-error *ngIf="form.get('title').hasError('required')"
+            >必須入力です</mat-error
+          >
+          <mat-error *ngIf="form.get('title').hasError('maxlength')"
+            >最大{{ titleMaxLength }}文字です</mat-error
+          >
         </form>
 
-        <button (click)="isEditable = !isEditable" mat-icon-button>
+        <button
+          *ngIf="!isEditable && article.ownerId === authServise.uid"
+          (click)="isEditable = !isEditable"
+          mat-icon-button
+        >
           <mat-icon>create</mat-icon>
         </button>
       </div>
@@ -33,25 +45,33 @@
       <mat-divider></mat-divider>
       <div class="detail__description">
         <p *ngIf="!isEditable">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat
-          nesciunt soluta eaque eius corporis quos, fuga dolore dolorum ea ipsum
-          distinctio recusandae incidunt sapiente quae sit? Labore quod
-          temporibus aspernatur.
+          {{ article.description ? article.description : '説明' }}
         </p>
-        <div class="form">
+        <form [formGroup]="form" class="form">
           <mat-form-field
             *ngIf="isEditable"
             appearance="outline"
             class="form__input"
           >
             <mat-label>説明</mat-label>
-            <textarea matInput placeholder="説明"></textarea>
+            <textarea
+              formControlName="description"
+              matInput
+              placeholder="説明"
+            ></textarea>
           </mat-form-field>
-          <div align="end" class="actions" *ngIf="isEditable">
+          <div class="actions" *ngIf="isEditable">
             <button mat-button (click)="isEditable = false">キャンセル</button>
-            <button mat-raised-button color="primary">保存</button>
+            <button
+              (click)="update()"
+              [disabled]="form.pristine || form.invalid"
+              mat-raised-button
+              color="primary"
+            >
+              保存
+            </button>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   </div>

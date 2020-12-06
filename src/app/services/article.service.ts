@@ -6,12 +6,13 @@ import { combineLatest, Observable, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { Article, ArticleWithOwner } from '../interfaces/Article';
 import { UserService } from './user.service';
+import * as firebase from 'firebase';
+import { promise } from 'protractor';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ArticleService {
-
   constructor(
     private db: AngularFirestore,
     private router: Router,
@@ -19,9 +20,7 @@ export class ArticleService {
     private userService: UserService,
   ) { }
 
-  async createArticle(
-    article: Omit<Article, 'id'>
-  ): Promise<void> {
+  async createArticle(article: Omit<Article, 'id'>): Promise<void> {
     const id = this.db.createId();
     if (article.image !== undefined) {
       article.image = await this.setImageToStorage(id, article.image);
@@ -38,25 +37,42 @@ export class ArticleService {
       });
   }
 
+  updateArticle(
+    id: string,
+    article: Omit<
+      Article,
+      'id' | 'createdAt' | 'ownerId' | 'image' | 'updatedAt' | 'likeCount'
+    >
+  ): Promise<void> {
+    const newValue: Omit<
+      Article,
+      'id' | 'createdAt' | 'ownerId' | 'image' | 'likeCount'
+    > = {
+      ...article,
+      updatedAt: firebase.default.firestore.Timestamp.now(),
+    };
+    return this.db.doc<Article>(`posts/${id}`).update(newValue);
+  }
+
   getArticle(articleId: string): Observable<Article> {
     return this.db.doc<Article>(`posts/${articleId}`).valueChanges();
   }
 
   getArticleByOwnerId(ownerId: string): Observable<Article[]> {
     return this.db
-      .collection<Article>('posts', (ref) => ref.where('ownerId', '==', ownerId))
+      .collection<Article>('posts', (ref) =>
+        ref.where('ownerId', '==', ownerId)
+      )
       .valueChanges();
   }
 
   async setImageToStorage(articleId: string, file: File): Promise<string> {
-    const result = await this.storage
-      .ref(`posts/${articleId}`)
-      .put(file);
+    const result = await this.storage.ref(`posts/${articleId}`).put(file);
     return result.ref.getDownloadURL();
   }
 
   getArticles(): Observable<Article[]> {
-    return this.db.collection<Article>('posts').valueChanges();
+    return this.db.collection<Article>('posts', ref => ref.orderBy('createdAt', 'desc')).valueChanges();
   }
 
   deleteArticle(id: string): Promise<void> {
