@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireStorage } from '@angular/fire/storage';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import * as firebase from 'firebase';
@@ -12,13 +11,13 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./create-article-dialog.component.scss']
 })
 export class CreateArticleDialogComponent implements OnInit {
-  image: File;
 
+  image: File;
   form = this.fb.group({
     title: ['', [Validators.required, Validators.maxLength(40)]],
   });
 
-  get titleControl() {
+  get titleControl(): FormControl {
     return this.form.get('title') as FormControl;
   }
 
@@ -32,11 +31,12 @@ export class CreateArticleDialogComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  getImage(event: any) {
-    this.image = event.target.files[0];
 
+  getImage(event: any): void {
+    this.image = event.target.files[0];
   }
-  cancel() {
+
+  cancel(): void {
     this.image = null;
   }
 
@@ -53,6 +53,4 @@ export class CreateArticleDialogComponent implements OnInit {
       this.snackBar.open('作成されました！', null);
     });
   }
-
-
 }
