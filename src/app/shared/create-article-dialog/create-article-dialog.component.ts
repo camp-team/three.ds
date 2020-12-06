@@ -16,7 +16,7 @@ export class CreateArticleDialogComponent implements OnInit {
     title: ['', [Validators.required, Validators.maxLength(40)]],
   });
 
-  get titleControl() {
+  get titleControl(): FormControl {
     return this.form.get('title') as FormControl;
   }
 
@@ -24,7 +24,7 @@ export class CreateArticleDialogComponent implements OnInit {
     private fb: FormBuilder,
     private authService: AuthService,
     private articleService: ArticleService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
   ) { }
 
   ngOnInit(): void {

@@ -38,6 +38,25 @@ $threed-theme: mat-light-theme(
 @import 'mixins';
 @import 'variables';
 
+.glb-container,
+canvas {
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+div.-glbcontainer {
+  overflow: hidden;
+}
+
+html,
+body,
+div,
+canvas {
+  margin: 0;
+  padding: 0;
+}
+
 html,
 body {
   height: 100%;
