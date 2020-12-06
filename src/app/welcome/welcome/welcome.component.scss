@@ -20,6 +20,7 @@ section {
     font-size: 176px;
     color: #333333;
     margin-bottom: 88px;
+    z-index: 5;
     &::before {
       content: 'THREED';
       color: #898383;
