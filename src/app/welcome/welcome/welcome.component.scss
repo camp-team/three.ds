@@ -7,13 +7,14 @@ section {
 }
 
 .hero {
+  position: relative;
   margin-bottom: 300px;
   text-align: center;
   background: url(/assets/images/web-hero-image.svg) center/contain no-repeat;
-
   height: 100vh;
   display: flex;
   align-items: center;
+  z-index: -1;
   &__logo-title {
     position: relative;
     font-family: 'Bungee';
@@ -34,12 +35,13 @@ section {
 
 .login-button {
   outline: none;
-  padding: 24px 114px;
-  background-color: $color-main;
-  border-radius: 30px;
+  padding: 16px 56px;
+  min-width: 240px;
+  background-color: #4790bb;
+  border-radius: 80px;
   border: none;
   color: #fff;
-  font-size: 30px;
+  font-size: 18px;
   font-weight: 500;
   font-family: 'Hiragino Kaku Gothic ProN';
   transition: opacity 0.3s;
@@ -75,20 +77,19 @@ section {
     padding-bottom: 38.4px;
   }
   &__text {
+    line-height: 2;
     margin-top: 206px;
     margin-bottom: 331px;
     margin-right: 80px;
-    font-size: 42px;
+    font-size: 30px;
     color: #333333;
     letter-spacing: 0.3em;
-    text-align: left;
+    @include pc {
+      text-align: left;
+    }
   }
   &__image--top {
-    max-width: 235.25px;
-    margin-bottom: 110.7px;
-  }
-  &__image--bottom {
-    max-width: 733.53px;
+    margin-bottom: 80px;
   }
 }
 
@@ -105,12 +106,14 @@ section {
     margin-right: 80px;
   }
   &__texts p {
-    white-space: nowrap;
+    line-height: 2;
     color: #333333;
     max-width: 400px;
-    font-size: 42px;
-    text-align: left;
+    font-size: 30px;
     margin-bottom: 94px;
+    @include pc {
+      text-align: left;
+    }
   }
 }
 
@@ -183,7 +186,6 @@ section {
       margin: 0 72px 92px;
       max-width: 400px;
       font-size: 20px;
-      text-align: left;
     }
     &__image--top {
       max-width: 79.02px;
@@ -205,8 +207,17 @@ section {
     &__texts p {
       white-space: nowrap;
       font-size: 20px;
-      text-align: center;
-      margin: 0 0 16px;
+      margin: 0px 0 64px;
     }
+  }
+}
+
+.footer {
+  background-color: $color-accent;
+  &__copy {
+    color: rgba($color: #fff, $alpha: 0.6);
+    padding: 16px 0;
+    text-align: center;
+    line-height: 1.5;
   }
 }
