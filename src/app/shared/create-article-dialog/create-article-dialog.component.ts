@@ -14,9 +14,12 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class CreateArticleDialogComponent implements OnInit {
 
+  titleMaxLength = 40;
+  descriptionMaxLength = 150;
   image: File;
   form = this.fb.group({
-    title: ['', [Validators.required, Validators.maxLength(40)]],
+    title: ['', [Validators.required, Validators.maxLength(this.titleMaxLength)]],
+    description: ['', [Validators.maxLength(this.descriptionMaxLength)]]
   });
 
   get titleControl(): FormControl {
@@ -47,13 +50,14 @@ export class CreateArticleDialogComponent implements OnInit {
     const articleValue: Omit<Article, 'id'> = {
       ownerId: this.authService.uid,
       title: formData.title,
+      description: formData.description,
       image: this.image,
       createdAt: firebase.default.firestore.Timestamp.now(),
       updatedAt: firebase.default.firestore.Timestamp.now(),
     };
     this.articleService.createArticle(articleValue).then((id) => {
       this.snackBar.open('作成されました！', null);
-      this.router.navigateByUrl(`article-dateli/${id}`);
+      this.router.navigateByUrl(`article-detail/${id}`);
     });
   }
 }
