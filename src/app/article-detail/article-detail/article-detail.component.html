@@ -1,7 +1,5 @@
 <ng-container *ngIf="article$ | async as article">
-  <app-image-object
-    [imageURL]="article.image"
-  ></app-image-object>
+  <app-image-object [imageURL]="article.image"></app-image-object>
 
   <div class="detail">
     <div class="container">
@@ -20,10 +18,7 @@
           </mat-form-field>
         </form>
 
-        <button
-          (click)="isEditable = !isEditable"
-          mat-icon-button
-        >
+        <button (click)="isEditable = !isEditable" mat-icon-button>
           <mat-icon>create</mat-icon>
         </button>
       </div>
@@ -32,7 +27,7 @@
           <img src="assets/images/example-image.png" alt="" />
         </div>
         <div class="detail__name">
-          <p>ユーザーネームユーザーネーム</p>
+          <p>{{ article.owner.name }}</p>
         </div>
       </div>
       <mat-divider></mat-divider>
@@ -53,9 +48,7 @@
             <textarea matInput placeholder="説明"></textarea>
           </mat-form-field>
           <div align="end" class="actions" *ngIf="isEditable">
-            <button mat-button (click)="isEditable = false">
-              キャンセル
-            </button>
+            <button mat-button (click)="isEditable = false">キャンセル</button>
             <button mat-raised-button color="primary">保存</button>
           </div>
         </div>
