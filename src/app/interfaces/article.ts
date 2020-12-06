@@ -11,5 +11,5 @@ export interface Article {
 }
 
 export interface ArticleWithOwner extends Article {
-  owner: UserData;
+  user: UserData;
 }

@@ -106,9 +106,9 @@ export class SceneService {
     const loadModel = (gltf: GLTF, position: Vector3) => {
       const model = gltf.scene.children[0];
       model.position.copy(position);
-      model.scale.set(0.1, 0.1, 0.1);
       // model.scale.set(1, 1, 1);
-      // model.scale.multiplyScalar(1 / 6); // adjust scalar factor to match your scene scale
+      // model.scale.set(1, 1, 1);
+      model.scale.multiplyScalar(1 / 6); // adjust scalar factor to match your scene scale
 
 
       const animation = gltf.animations[0];

@@ -15,12 +15,10 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ArticleDetailComponent implements OnInit {
   isEditable: boolean;
-  ownerId: string;
   articleId: string = this.route.snapshot.paramMap.get('id');
   article$: Observable<ArticleWithOwner> = this.articleService.getArticleWithOwner(
     this.articleId
   );
-  ownerUser$: Observable<UserData>;
 
   constructor(
     private articleService: ArticleService,
@@ -32,6 +30,6 @@ export class ArticleDetailComponent implements OnInit {
   ngOnInit(): void {
     this.article$.subscribe((article) => {
       console.log(article);
-    })
+    });
   }
 }

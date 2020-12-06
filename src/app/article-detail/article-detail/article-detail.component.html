@@ -24,10 +24,10 @@
       </div>
       <div class="detail__users">
         <div class="detail__icon">
-          <img src="assets/images/example-image.png" alt="" />
+          <img [src]="article.user.avatarURL" alt="" />
         </div>
         <div class="detail__name">
-          <p>{{ article.owner.name }}</p>
+          <p>{{ article.user.name }}</p>
         </div>
       </div>
       <mat-divider></mat-divider>
