@@ -1,1 +1,65 @@
-<app-image-object [imageURL]="'https://firebasestorage.googleapis.com/v0/b/threed-bc539.appspot.com/o/posts%2FLtDGKsIhkQUBlVzVmduP?alt=media&token=89973e74-918a-4f54-a40d-739874c1c7d0'"></app-image-object>
+<ng-container *ngIf="article$ | async as article">
+  <app-image-object
+    [imageURL]="article.image"
+  ></app-image-object>
+
+  <div class="detail">
+    <div class="container">
+      <div class="detail__title">
+        <p *ngIf="!isEditable">データタイトルデータタイトル</p>
+
+        <form *ngIf="isEditable" class="form">
+          <mat-form-field appearance="outline" class="form__input">
+            <mat-label>タイトル</mat-label>
+            <input
+              matInput
+              autocomplete="off"
+              placeholder="タイトル"
+              type="text"
+            />
+          </mat-form-field>
+        </form>
+
+        <button
+          (click)="isEditable = !isEditable"
+          mat-icon-button
+        >
+          <mat-icon>create</mat-icon>
+        </button>
+      </div>
+      <div class="detail__users">
+        <div class="detail__icon">
+          <img src="assets/images/example-image.png" alt="" />
+        </div>
+        <div class="detail__name">
+          <p>ユーザーネームユーザーネーム</p>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="detail__description">
+        <p *ngIf="!isEditable">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat
+          nesciunt soluta eaque eius corporis quos, fuga dolore dolorum ea ipsum
+          distinctio recusandae incidunt sapiente quae sit? Labore quod
+          temporibus aspernatur.
+        </p>
+        <div class="form">
+          <mat-form-field
+            *ngIf="isEditable"
+            appearance="outline"
+            class="form__input"
+          >
+            <mat-label>説明</mat-label>
+            <textarea matInput placeholder="説明"></textarea>
+          </mat-form-field>
+          <div align="end" class="actions" *ngIf="isEditable">
+            <button mat-button (click)="isEditable = false">
+              キャンセル
+            </button>
+            <button mat-raised-button color="primary">保存</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
