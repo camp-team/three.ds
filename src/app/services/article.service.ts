@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
+import * as firebase from 'firebase';
 import { Observable } from 'rxjs';
 import { Article } from '../interfaces/Article';
 
@@ -8,15 +9,12 @@ import { Article } from '../interfaces/Article';
   providedIn: 'root',
 })
 export class ArticleService {
-
   constructor(
     private db: AngularFirestore,
     private storage: AngularFireStorage
-  ) { }
+  ) {}
 
-  async createArticle(
-    article: Omit<Article, 'id'>
-  ): Promise<string> {
+  async createArticle(article: Omit<Article, 'id'>): Promise<string> {
     const id = this.db.createId();
     if (article.image !== undefined) {
       article.image = await this.setImageToStorage(id, article.image);
@@ -29,20 +27,37 @@ export class ArticleService {
     return id;
   }
 
+  updateArticle(
+    id: string,
+    article: Omit<
+      Article,
+      'id' | 'createdAt' | 'ownerId' | 'image' | 'updatedAt' | 'likeCount'
+    >
+  ): Promise<void> {
+    const newValue: Omit<
+      Article,
+      'id' | 'createdAt' | 'ownerId' | 'image' | 'likeCount'
+    > = {
+      ...article,
+      updatedAt: firebase.default.firestore.Timestamp.now(),
+    };
+    return this.db.doc<Article>(`posts/${id}`).update(newValue);
+  }
+
   getArticle(articleId: string): Observable<Article> {
     return this.db.doc<Article>(`posts/${articleId}`).valueChanges();
   }
 
   getArticleByOwnerId(ownerId: string): Observable<Article[]> {
     return this.db
-      .collection<Article>('posts', (ref) => ref.where('ownerId', '==', ownerId))
+      .collection<Article>('posts', (ref) =>
+        ref.where('ownerId', '==', ownerId)
+      )
       .valueChanges();
   }
 
   async setImageToStorage(articleId: string, file: File): Promise<string> {
-    const result = await this.storage
-      .ref(`posts/${articleId}`)
-      .put(file);
+    const result = await this.storage.ref(`posts/${articleId}`).put(file);
     return result.ref.getDownloadURL();
   }
 
