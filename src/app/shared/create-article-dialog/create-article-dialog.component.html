@@ -45,6 +45,9 @@
         class="form__submit"
         [mat-dialog-close]="true"
         [disabled]="form.invalid || form.pristine || !this.image"
+        [class.form__submit--disabled]="
+          form.invalid || form.pristine || !this.image
+        "
       >
         作成
       </button>
