@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { Article } from '../interfaces/Article';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ArticleService {
 
@@ -27,9 +27,16 @@ export class ArticleService {
       id,
       ...article,
     };
-    await this.db.doc<Article>(`posts/${id}`).set(newValue).then(() => {
-      this.router.navigateByUrl(`article/${id}`);
-    });
+    await this.db
+      .doc<Article>(`posts/${id}`)
+      .set(newValue)
+      .then(() => {
+        this.router.navigateByUrl(`article/${id}`);
+      });
+  }
+
+  getArticle(articleId: string): Observable<Article> {
+    return this.db.doc<Article>(`posts/${articleId}`).valueChanges();
   }
 
   getArticleByOwnerId(ownerId: string): Observable<Article[]> {
@@ -45,7 +52,7 @@ export class ArticleService {
     return result.ref.getDownloadURL();
   }
 
-  getArticles() {
+  getArticles(): Observable<Article[]> {
     return this.db.collection<Article>('posts').valueChanges();
   }
 
