@@ -1,7 +1,6 @@
 <div class="header">
   <div class="container">
     <div class="header__inner">
-
       <h1 class="header__title">
         <a href="" class="header__logo-link">Threed</a>
       </h1>
@@ -25,16 +24,17 @@
               [src]="user.avatarURL"
               alt=""
             />
+            <mat-menu #menuRef="matMenu">
+              <a mat-menu-item href="" routerLink="/my-page/{{ user.uid }}"
+                ><mat-icon>account_circle</mat-icon> <span>マイページ</span></a
+              >
+              <button mat-menu-item (click)="logout()">
+                <mat-icon>exit_to_app</mat-icon>
+                <span>ログアウト</span>
+              </button>
+            </mat-menu>
           </ng-container>
-          <mat-menu #menuRef="matMenu">
-            <a mat-menu-item href="" routerLink="/my-page"
-              ><mat-icon>account_circle</mat-icon> <span>マイページ</span></a
-            >
-            <button mat-menu-item (click)="logout()">
-              <mat-icon>exit_to_app</mat-icon>
-              <span>ログアウト</span>
-            </button>
-          </mat-menu>
+
           <ng-template #notLogin>
             <button (click)="login()" class="header__button" mat-raised-button>
               ログイン

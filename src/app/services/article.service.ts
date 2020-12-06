@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Article } from '../interfaces/Article';
 
 @Injectable({
@@ -25,4 +26,11 @@ export class ArticleService {
       this.router.navigateByUrl(`article/${id}`);
     });
   }
+
+  getArticleByOwnerId(ownerId: string): Observable<Article[]> {
+    return this.db
+      .collection<Article>('posts', (ref) => ref.where('ownerId', '==', ownerId))
+      .valueChanges();
+  }
+
 }

@@ -8,6 +8,7 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireFunctionsModule, REGION } from '@angular/fire/functions';
 import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -27,6 +28,7 @@ import { CreateArticleDialogComponent } from './shared/create-article-dialog/cre
     AngularFirestoreModule,
     MatSnackBarModule,
     AngularFireFunctionsModule,
+    AngularFireStorageModule
   ],
   providers: [
     { provide: REGION, useValue: 'asia-northeast1' },
