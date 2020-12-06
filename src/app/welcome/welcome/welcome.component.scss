@@ -14,7 +14,6 @@ section {
   height: 100vh;
   display: flex;
   align-items: center;
-  z-index: -1;
   &__logo-title {
     position: relative;
     font-family: 'Bungee';
@@ -130,7 +129,6 @@ section {
     margin-bottom: 0;
     background: url(/assets/images/mobile-hero-image.svg) center/cover no-repeat;
     position: relative;
-    z-index: -2;
     &__logo-title {
       margin: 0 auto 24px;
       max-width: 256px;

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { Router } from '@angular/router';
 import { Article } from '../interfaces/Article';
 
 @Injectable({
@@ -11,13 +10,12 @@ export class ArticleService {
 
   constructor(
     private db: AngularFirestore,
-    private router: Router,
     private storage: AngularFireStorage
   ) { }
 
   async createArticle(
     article: Omit<Article, 'id'>
-  ): Promise<void> {
+  ): Promise<string> {
     const id = this.db.createId();
     if (article.image !== undefined) {
       article.image = await this.setImageToStorage(id, article.image);
@@ -26,9 +24,8 @@ export class ArticleService {
       id,
       ...article,
     };
-    await this.db.doc<Article>(`posts/${id}`).set(newValue).then(() => {
-      this.router.navigateByUrl(`article/${id}`);
-    });
+    await this.db.doc<Article>(`posts/${id}`).set(newValue);
+    return id;
   }
 
   async setImageToStorage(articleId: string, file: File): Promise<string> {

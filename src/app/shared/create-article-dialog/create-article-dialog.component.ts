@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import * as firebase from 'firebase';
+import { Article } from 'src/app/interfaces/Article';
 import { ArticleService } from 'src/app/services/article.service';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -26,7 +28,7 @@ export class CreateArticleDialogComponent implements OnInit {
     private authService: AuthService,
     private articleService: ArticleService,
     private snackBar: MatSnackBar,
-
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -42,15 +44,16 @@ export class CreateArticleDialogComponent implements OnInit {
 
   async submit(): Promise<void> {
     const formData = this.form.value;
-    const articleValue = {
+    const articleValue: Omit<Article, 'id'> = {
       ownerId: this.authService.uid,
       title: formData.title,
       image: this.image,
       createdAt: firebase.default.firestore.Timestamp.now(),
       updatedAt: firebase.default.firestore.Timestamp.now(),
     };
-    this.articleService.createArticle(articleValue).then(() => {
+    this.articleService.createArticle(articleValue).then((id) => {
       this.snackBar.open('作成されました！', null);
+      this.router.navigateByUrl(`article-dateli/${id}`);
     });
   }
 }
