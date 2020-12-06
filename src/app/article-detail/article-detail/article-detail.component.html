@@ -1,8 +1,6 @@
-<!-- <ng-container *ngIf="article$ | async as article"> -->
+<ng-container *ngIf="article$ | async as article">
   <app-image-object
-    [imageURL]="
-      'https://firebasestorage.googleapis.com/v0/b/threed-bc539.appspot.com/o/posts%2FLtDGKsIhkQUBlVzVmduP?alt=media&token=89973e74-918a-4f54-a40d-739874c1c7d0'
-    "
+    [imageURL]="article.image"
   ></app-image-object>
 
   <div class="detail">
@@ -64,4 +62,4 @@
       </div>
     </div>
   </div>
-<!-- </ng-container> -->
+</ng-container>
