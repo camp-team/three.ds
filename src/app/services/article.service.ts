@@ -53,7 +53,7 @@ export class ArticleService {
   }
 
   getArticles(): Observable<Article[]> {
-    return this.db.collection<Article>('posts').valueChanges();
+    return this.db.collection<Article>('posts', ref => ref.orderBy('createdAt', 'desc')).valueChanges();
   }
 
   deleteArticle(id: string): Promise<void> {

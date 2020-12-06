@@ -6,6 +6,7 @@ import { UserService } from 'src/app/services/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-article-card',
@@ -17,20 +18,25 @@ export class ArticleCardComponent implements OnInit {
   @Input() article: Article;
 
   author$: Observable<UserData>;
+  user$: Observable<UserData> = this.authService.user$;
+
+  uid: string;
 
   constructor(
     private userService: UserService,
     private articleService: ArticleService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
     this.author$ = this.userService.getUser(this.article.ownerId).pipe(take(1));
+    this.user$.pipe(take(1)).toPromise().then((user) => {
+      this.uid = user.uid;
+    });
   }
 
   deleteArticle(id: string): void {
-    // 下記でarticleServiceのdelete関数呼び出す
-    console.log(id);
     this.articleService.deleteArticle(this.article.id).then(() => {
       this.snackBar.open('削除しました！', null);
     });
