@@ -1,17 +1,17 @@
 <div class="container">
-  <h1>マイページ</h1>
+  <h1 class="title">マイページ</h1>
   <mat-tab-group mat-align-tabs="center">
-    <mat-tab label="First">
-      <ng-container *ngFor="let article of articles$ | async">
-        <!-- <div class="article-layout">
+    <mat-tab label="記事一覧">
+      <div class="article-layout">
+        <ng-container *ngFor="let article of articles$ | async">
           <app-article-card [article]="article"></app-article-card>
-        </div> -->
-      </ng-container>
+        </ng-container>
+      </div>
     </mat-tab>
-    <mat-tab label="Second">
-      <div class="container">
-        <div class="profile">
-          <ng-container *ngIf="authService.user$ | async as user">
+    <ng-container *ngIf="authService.user$ | async as user">
+      <mat-tab label="プロフィール編集">
+        <div class="container">
+          <div class="profile">
             <section class="avatar-section">
               <h3>アバターの変更</h3>
               <label class="avatar-wrapper">
@@ -64,9 +64,9 @@
                 更新する
               </button>
             </section>
-          </ng-container>
+          </div>
         </div>
-      </div>
-    </mat-tab>
+      </mat-tab>
+    </ng-container>
   </mat-tab-group>
 </div>
