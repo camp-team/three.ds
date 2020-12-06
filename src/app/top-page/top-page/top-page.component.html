@@ -1,1 +1,5 @@
-<p>top-page works!</p>
+<div class="top-wrapper">
+  <ng-container *ngIf="articles$ | async as articles">
+    <app-article-card *ngFor="let article of articles" [article]="article"></app-article-card>
+  </ng-container>
+</div>
