@@ -7,7 +7,6 @@ import { map, switchMap } from 'rxjs/operators';
 import { Article, ArticleWithOwner } from '../interfaces/Article';
 import { UserService } from './user.service';
 import * as firebase from 'firebase';
-import { promise } from 'protractor';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +19,7 @@ export class ArticleService {
     private userService: UserService,
   ) { }
 
-  async createArticle(article: Omit<Article, 'id'>): Promise<void> {
+  async createArticle(article: Omit<Article, 'id'>): Promise<string> {
     const id = this.db.createId();
     if (article.image !== undefined) {
       article.image = await this.setImageToStorage(id, article.image);
@@ -29,12 +28,8 @@ export class ArticleService {
       id,
       ...article,
     };
-    await this.db
-      .doc<Article>(`posts/${id}`)
-      .set(newValue)
-      .then(() => {
-        this.router.navigateByUrl(`article/${id}`);
-      });
+    await this.db.doc<Article>(`posts/${id}`).set(newValue);
+    return id;
   }
 
   updateArticle(
