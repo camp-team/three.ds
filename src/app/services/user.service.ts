@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { Observable } from 'rxjs';
+import { UserData } from 'src/app/interfaces/user-data';
 
 @Injectable({
   providedIn: 'root'
@@ -25,5 +27,9 @@ export class UserService {
     return this.db.doc(`users/${uid}`).update({
       avatarURL,
     });
+  }
+
+  getUser(uid: string): Observable<UserData> {
+    return this.db.doc<UserData>(`users/${uid}`).valueChanges();
   }
 }

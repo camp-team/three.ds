@@ -10,7 +10,7 @@ import { CreateArticleDialogComponent } from './create-article-dialog/create-art
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 
@@ -41,4 +41,4 @@ import { MatInputModule } from '@angular/material/input';
     CreateArticleDialogComponent,
   ],
 })
-export class SharedModule {}
+export class SharedModule { }

@@ -12,11 +12,12 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class CreateArticleDialogComponent implements OnInit {
 
+  image: File;
   form = this.fb.group({
     title: ['', [Validators.required, Validators.maxLength(40)]],
   });
 
-  get titleControl() {
+  get titleControl(): FormControl {
     return this.form.get('title') as FormControl;
   }
 
@@ -24,17 +25,27 @@ export class CreateArticleDialogComponent implements OnInit {
     private fb: FormBuilder,
     private authService: AuthService,
     private articleService: ArticleService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+
   ) { }
 
   ngOnInit(): void {
   }
 
-  submit(): void {
+  getImage(event: any): void {
+    this.image = event.target.files[0];
+  }
+
+  cancel(): void {
+    this.image = null;
+  }
+
+  async submit(): Promise<void> {
     const formData = this.form.value;
     const articleValue = {
       ownerId: this.authService.uid,
       title: formData.title,
+      image: this.image,
       createdAt: firebase.default.firestore.Timestamp.now(),
       updatedAt: firebase.default.firestore.Timestamp.now(),
     };
@@ -42,5 +53,4 @@ export class CreateArticleDialogComponent implements OnInit {
       this.snackBar.open('作成されました！', null);
     });
   }
-
 }

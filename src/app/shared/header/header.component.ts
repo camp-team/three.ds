@@ -9,9 +9,9 @@ import { CreateArticleDialogComponent } from '../create-article-dialog/create-ar
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  constructor(public authService: AuthService, private dialog: MatDialog) {}
+  constructor(public authService: AuthService, private dialog: MatDialog) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   logout(): void {
     this.authService.logout();

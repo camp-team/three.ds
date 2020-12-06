@@ -1,4 +1,4 @@
-<a class="card">
+<a class="card" [routerLink]="['/article-detail/', article.id]" *ngIf="author$ | async as author">
   <img
     class="card__image"
     onError="this.src='/assets/images/fake.png'"
@@ -9,7 +9,7 @@
     <img
       class="card__avatar"
       onError="this.src='/assets/images/fake.png'"
-      [src]="user.avatarURL"
+      [src]="author.avatarURL"
       alt="ユーザーアバター"
     />
     <div class="card__items">
@@ -19,7 +19,7 @@
       <span class="card__date">
         投稿日:{{
           article.createdAt
-            ? (article.createdAt | date: 'yyyy/MM/dd')
+            ? (article.createdAt.toDate() | date: 'yyyy/MM/dd')
             : '2020/12/05'
         }}
       </span>
@@ -33,7 +33,7 @@
     </button>
     <mat-menu #menuRef="matMenu">
       <button
-        *ngIf="user.uid === article.ownerId"
+        *ngIf="author.uid === article.ownerId"
         (click)="deleteArticle(article.id)"
         mat-menu-item
       >
