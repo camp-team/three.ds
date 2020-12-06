@@ -3,7 +3,9 @@ import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Article } from 'src/app/interfaces/Article';
+import { take, tap } from 'rxjs/operators';
+import { Article, ArticleWithOwner } from 'src/app/interfaces/Article';
+import { UserData } from 'src/app/interfaces/user-data';
 import { ArticleService } from 'src/app/services/article.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
@@ -16,7 +18,7 @@ import { UserService } from 'src/app/services/user.service';
 export class ArticleDetailComponent implements OnInit {
   isEditable: boolean;
   articleId: string = this.route.snapshot.paramMap.get('id');
-  article$: Observable<Article> = this.articleService.getArticle(
+  article$: Observable<ArticleWithOwner> = this.articleService.getArticleWithOwner(
     this.articleId
   );
   titleMaxLength = 40;
@@ -36,7 +38,7 @@ export class ArticleDetailComponent implements OnInit {
     private userService: UserService,
     private fb: FormBuilder,
     private snackBar: MatSnackBar
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.article$.subscribe((article) => {

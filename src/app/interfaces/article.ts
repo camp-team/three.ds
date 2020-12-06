@@ -1,3 +1,5 @@
+import { UserData } from './user-data';
+
 export interface Article {
   id: string;
   ownerId: string;
@@ -7,4 +9,8 @@ export interface Article {
   createdAt: firebase.default.firestore.Timestamp;
   updatedAt: firebase.default.firestore.Timestamp;
   likeCount?: number;
+}
+
+export interface ArticleWithOwner extends Article {
+  user: UserData;
 }

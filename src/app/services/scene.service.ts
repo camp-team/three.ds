@@ -32,9 +32,9 @@ export class SceneService {
   deltaX = 0.01;
   deltaY = 0.01;
   deltaZ = 0.01;
-  far = 100;
+  far = 1000;
   fov = 35;
-  near = 1;
+  near = 0.001;
   physicallyCorrectLights = true;
   sceneBackground = 0x8fbcd4;
   renderer = new WebGLRenderer({ antialias: true });
@@ -106,9 +106,12 @@ export class SceneService {
     const loadModel = (gltf: GLTF, position: Vector3) => {
       const model = gltf.scene.children[0];
       model.position.copy(position);
-      model.scale.set(0.01, 0.01, 0.01);
+      model.scale.set(0.5, 0.5, 0.5);
+      // model.scale.set(1, 1, 1);
+      // model.scale.multiplyScalar(1 / 6); // adjust scalar factor to match your scene scale
 
-      // const animation = gltf.animations[0];
+
+      const animation = gltf.animations[0];
 
       const mixer = new AnimationMixer(model);
       this.mixers.push(mixer);
