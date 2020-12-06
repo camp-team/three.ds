@@ -11,6 +11,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./article-detail.component.scss'],
 })
 export class ArticleDetailComponent implements OnInit {
+  isEditable: boolean;
   articleId: string = this.route.snapshot.paramMap.get('id');
   article$: Observable<Article> = this.articleService.getArticle(
     this.articleId

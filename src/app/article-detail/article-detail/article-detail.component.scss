@@ -8,14 +8,12 @@
     width: 100%;
   }
   &__title {
-    font-size: 22px;
     font-weight: bold;
     display: flex;
     align-items: center;
     & p {
       margin-right: 16px;
-    }
-    & button {
+      font-size: 22px;
     }
   }
   &__users {
@@ -38,6 +36,18 @@
 
   &__description {
     margin-top: 32px;
-    max-width: 680px;
+    & p {
+      width: 50%;
+    }
   }
+}
+
+.form {
+  width: 50%;
+  &__input {
+    width: 100%;
+  }
+}
+.cancel {
+  margin-right: 8px;
 }
