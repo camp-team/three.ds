@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Article } from '../interfaces/Article';
 
 @Injectable({
@@ -29,6 +30,12 @@ export class ArticleService {
     await this.db.doc<Article>(`posts/${id}`).set(newValue).then(() => {
       this.router.navigateByUrl(`article/${id}`);
     });
+  }
+
+  getArticleByOwnerId(ownerId: string): Observable<Article[]> {
+    return this.db
+      .collection<Article>('posts', (ref) => ref.where('ownerId', '==', ownerId))
+      .valueChanges();
   }
 
   async setImageToStorage(articleId: string, file: File): Promise<string> {
