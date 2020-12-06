@@ -50,7 +50,7 @@ export class CreateArticleDialogComponent implements OnInit {
     const articleValue: Omit<Article, 'id'> = {
       ownerId: this.authService.uid,
       title: formData.title,
-      description: formData.title,
+      description: formData.description,
       image: this.image,
       createdAt: firebase.default.firestore.Timestamp.now(),
       updatedAt: firebase.default.firestore.Timestamp.now(),
