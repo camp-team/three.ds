@@ -28,7 +28,7 @@ import { CreateArticleDialogComponent } from './shared/create-article-dialog/cre
     AngularFirestoreModule,
     MatSnackBarModule,
     AngularFireFunctionsModule,
-    AngularFireStorageModule,
+    AngularFireStorageModule
   ],
   providers: [
     { provide: REGION, useValue: 'asia-northeast1' },

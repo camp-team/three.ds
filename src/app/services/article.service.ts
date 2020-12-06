@@ -39,6 +39,12 @@ export class ArticleService {
     return this.db.doc<Article>(`posts/${articleId}`).valueChanges();
   }
 
+  getArticleByOwnerId(ownerId: string): Observable<Article[]> {
+    return this.db
+      .collection<Article>('posts', (ref) => ref.where('ownerId', '==', ownerId))
+      .valueChanges();
+  }
+
   async setImageToStorage(articleId: string, file: File): Promise<string> {
     const result = await this.storage
       .ref(`posts/${articleId}`)
