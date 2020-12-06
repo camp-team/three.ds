@@ -35,3 +35,30 @@
     box-sizing: border-box;
   }
 }
+.area {
+  width: 45em;
+  padding: 15px;
+  border: 1px solid #333;
+  background: rgba(0, 0, 0, 0.7);
+}
+#drop_zone {
+  border: 2px dashed #bbb;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  padding: 50px;
+  text-align: center;
+  font: 21pt bold arial;
+  color: #bbb;
+}
+label {
+  display: inline-block;
+  color: white;
+  background-color: $color-main;
+  padding: 6px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: opacity 0.3s;
+  &:hover {
+    opacity: 0.8;
+  }
+}
