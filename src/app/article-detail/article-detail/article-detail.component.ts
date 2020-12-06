@@ -1,24 +1,14 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { SceneService } from 'src/app/services/scene.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-article-detail',
   templateUrl: './article-detail.component.html',
   styleUrls: ['./article-detail.component.scss'],
-  providers: [SceneService]
 })
 export class ArticleDetailComponent implements OnInit {
 
-  constructor(
-    private scene: SceneService
-  ) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
-
-  @ViewChild('container')
-  set container(container: ElementRef) {
-    this.scene.initialize(container.nativeElement);
-  }
-
 }

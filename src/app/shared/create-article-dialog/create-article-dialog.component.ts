@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireStorage } from '@angular/fire/storage';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import * as firebase from 'firebase';
@@ -11,6 +12,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./create-article-dialog.component.scss']
 })
 export class CreateArticleDialogComponent implements OnInit {
+  image: File;
 
   form = this.fb.group({
     title: ['', [Validators.required, Validators.maxLength(40)]],
@@ -25,16 +27,26 @@ export class CreateArticleDialogComponent implements OnInit {
     private authService: AuthService,
     private articleService: ArticleService,
     private snackBar: MatSnackBar,
+
   ) { }
 
   ngOnInit(): void {
   }
 
-  submit(): void {
+  getImage(event: any): void {
+    this.image = event.target.files[0];
+  }
+
+  cancel(): void {
+    this.image = null;
+  }
+
+  async submit(): Promise<void> {
     const formData = this.form.value;
     const articleValue = {
       ownerId: this.authService.uid,
       title: formData.title,
+      image: this.image,
       createdAt: firebase.default.firestore.Timestamp.now(),
       updatedAt: firebase.default.firestore.Timestamp.now(),
     };
@@ -42,5 +54,6 @@ export class CreateArticleDialogComponent implements OnInit {
       this.snackBar.open('作成されました！', null);
     });
   }
+
 
 }

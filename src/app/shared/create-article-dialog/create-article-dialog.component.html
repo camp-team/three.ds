@@ -20,6 +20,23 @@
         >文字数は最大で40文字までです</mat-error
       >
     </mat-form-field>
+    <label for="file" *ngIf="!image">
+      glbファイルを選択
+      <input
+        type="file"
+        id="file"
+        name="file"
+        accept=".glb"
+        (change)="getImage($event)"
+        style="display: none"
+      />
+    </label>
+    <div *ngIf="image">
+      <p>{{ image.name }}</p>
+      <button mat-button color="warn" (click)="cancel()">
+        選択をキャンセル
+      </button>
+    </div>
 
     <mat-dialog-actions>
       <button
@@ -27,7 +44,7 @@
         type="submit"
         class="form__submit"
         [mat-dialog-close]="true"
-        [disabled]="form.invalid || form.pristine"
+        [disabled]="form.invalid || form.pristine || !this.image"
       >
         作成
       </button>

@@ -45,7 +45,7 @@ export class SceneService {
   // flamingoUrl =
   //   'https://rawcdn.githack.com/mrdoob/three.js/7249d12dac2907dac95d36227d62c5415af51845/examples/models/gltf/Flamingo.glb';
   parrotPosition = new Vector3(0, 0, 0);
-  parrotUrl = 'https://firebasestorage.googleapis.com/v0/b/threed-bc539.appspot.com/o/posts%2FLtDGKsIhkQUBlVzVmduP?alt=media&token=89973e74-918a-4f54-a40d-739874c1c7d0';
+  // parrotUrl = '';
   // 'https://rawcdn.githack.com/mrdoob/three.js/7249d12dac2907dac95d36227d62c5415af51845/examples/models/gltf/Parrot.glb';
   // storkPosition = new Vector3(0, -2.5, -10);
   // storkUrl =
@@ -101,7 +101,7 @@ export class SceneService {
 
   // GEOMETRY
 
-  private createModels = () => {
+  private createModels = (imageURL: string) => {
     this.loader = new GLTFLoader();
     const loadModel = (gltf: GLTF, position: Vector3) => {
       const model = gltf.scene.children[0];
@@ -120,7 +120,7 @@ export class SceneService {
     };
 
     this.loader.load(
-      this.parrotUrl,
+      imageURL,
       gltf => loadModel(gltf, this.parrotPosition),
       () => { },
       err => console.log(err)
@@ -182,7 +182,7 @@ export class SceneService {
 
   stop = () => this.renderer.setAnimationLoop(null);
 
-  initialize = (container: HTMLElement) => {
+  initialize = (container: HTMLElement, imageURL: string) => {
     this.container = container;
     this.scene = new Scene();
     this.scene.background = new Color(this.sceneBackground);
@@ -191,7 +191,7 @@ export class SceneService {
     this.createCamera();
     this.createControls();
     this.createLight();
-    this.createModels();
+    this.createModels(imageURL);
     this.createRenderer();
     this.start();
   }
