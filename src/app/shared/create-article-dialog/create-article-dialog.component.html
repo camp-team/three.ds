@@ -18,20 +18,20 @@
         >必須入力です</mat-error
       >
       <mat-error *ngIf="titleControl.hasError('maxlength')"
-        >文字数は最大で{{titleMaxLength}}文字までです</mat-error
+        >文字数は最大で{{ titleMaxLength }}文字までです</mat-error
       >
-      <mat-hint align="end">{{input.value.length}} / {{titleMaxLength}}</mat-hint>
+      <mat-hint align="end"
+        >{{ input.value.length }} / {{ titleMaxLength }}</mat-hint
+      >
     </mat-form-field>
-    <mat-form-field
-    class="form__desctiption"
-  >
-    <mat-label>説明</mat-label>
-    <textarea
-      formControlName="description"
-      matInput
-      placeholder="説明"
-    ></textarea>
-  </mat-form-field>
+    <mat-form-field class="form__desctiption">
+      <mat-label>説明</mat-label>
+      <textarea
+        formControlName="description"
+        matInput
+        placeholder="説明"
+      ></textarea>
+    </mat-form-field>
     <label for="file" *ngIf="!image">
       glbファイルを選択
       <input
@@ -56,6 +56,7 @@
         type="submit"
         class="form__submit"
         [mat-dialog-close]="true"
+        cdkFocusInitial
         [disabled]="form.invalid || form.pristine || !this.image"
         [class.form__submit--disabled]="
           form.invalid || form.pristine || !this.image

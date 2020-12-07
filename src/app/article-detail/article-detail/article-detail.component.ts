@@ -35,7 +35,6 @@ export class ArticleDetailComponent implements OnInit {
     private articleService: ArticleService,
     private route: ActivatedRoute,
     public authServise: AuthService,
-    private userService: UserService,
     private fb: FormBuilder,
     private snackBar: MatSnackBar
   ) { }
@@ -47,12 +46,9 @@ export class ArticleDetailComponent implements OnInit {
     this.form.markAsPristine();
   }
 
-  update(): void {
+  updateArticle(): void {
     const formData = this.form.value;
-    const newValue: Omit<
-      Article,
-      'id' | 'createdAt' | 'ownerId' | 'image' | 'updatedAt' | 'likeCount'
-    > = {
+    const newValue: Pick<Article, 'title' | 'description'> = {
       title: formData.title,
       description: formData.description,
     };

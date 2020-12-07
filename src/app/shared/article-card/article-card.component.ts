@@ -19,7 +19,6 @@ export class ArticleCardComponent implements OnInit {
 
   author$: Observable<UserData>;
   user$: Observable<UserData> = this.authService.user$;
-
   uid: string;
 
   constructor(
@@ -36,9 +35,9 @@ export class ArticleCardComponent implements OnInit {
     });
   }
 
-  deleteArticle(id: string): void {
+  deleteArticle(): void {
     this.articleService.deleteArticle(this.article.id).then(() => {
-      this.snackBar.open('削除しました！', null);
+      this.snackBar.open('削除しました！');
     });
   }
 }

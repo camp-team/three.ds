@@ -63,7 +63,7 @@
           <div class="actions" *ngIf="isEditable">
             <button mat-button (click)="isEditable = false">キャンセル</button>
             <button
-              (click)="update()"
+              (click)="updateArticle()"
               [disabled]="form.pristine || form.invalid"
               mat-raised-button
               color="primary"

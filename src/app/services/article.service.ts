@@ -34,15 +34,9 @@ export class ArticleService {
 
   updateArticle(
     id: string,
-    article: Omit<
-      Article,
-      'id' | 'createdAt' | 'ownerId' | 'image' | 'updatedAt' | 'likeCount'
-    >
+    article: Pick<Article, 'title' | 'description'>
   ): Promise<void> {
-    const newValue: Omit<
-      Article,
-      'id' | 'createdAt' | 'ownerId' | 'image' | 'likeCount'
-    > = {
+    const newValue: Pick<Article, 'title' | 'description' | 'updatedAt'> = {
       ...article,
       updatedAt: firebase.default.firestore.Timestamp.now(),
     };
