@@ -1,4 +1,4 @@
-import * as firebase from 'firebase/app';
+import firebase from 'firebase/app';
 import { UserData } from './user-data';
 export interface Article {
   id: string;
@@ -6,8 +6,8 @@ export interface Article {
   title: string;
   description?: string;
   image: string | any;
-  createdAt: firebase.default.firestore.Timestamp;
-  updatedAt: firebase.default.firestore.Timestamp;
+  createdAt: firebase.firestore.Timestamp;
+  updatedAt: firebase.firestore.Timestamp;
   likeCount?: number;
 }
 
