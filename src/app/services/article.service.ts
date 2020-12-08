@@ -6,7 +6,7 @@ import { combineLatest, Observable, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { Article, ArticleWithOwner } from '../interfaces/Article';
 import { UserService } from './user.service';
-import * as firebase from 'firebase';
+import firebase from 'firebase';
 
 @Injectable({
   providedIn: 'root',
@@ -38,7 +38,7 @@ export class ArticleService {
   ): Promise<void> {
     const newValue: Pick<Article, 'title' | 'description' | 'updatedAt'> = {
       ...article,
-      updatedAt: firebase.default.firestore.Timestamp.now(),
+      updatedAt: firebase.firestore.Timestamp.now(),
     };
     return this.db.doc<Article>(`posts/${id}`).update(newValue);
   }

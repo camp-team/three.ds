@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import * as firebase from 'firebase';
+import firebase from 'firebase';
 import { Article } from 'src/app/interfaces/Article';
 import { ArticleService } from 'src/app/services/article.service';
 import { AuthService } from 'src/app/services/auth.service';
@@ -52,8 +52,8 @@ export class CreateArticleDialogComponent implements OnInit {
       title: formData.title,
       description: formData.description,
       image: this.image,
-      createdAt: firebase.default.firestore.Timestamp.now(),
-      updatedAt: firebase.default.firestore.Timestamp.now(),
+      createdAt: firebase.firestore.Timestamp.now(),
+      updatedAt: firebase.firestore.Timestamp.now(),
     };
     this.articleService.createArticle(articleValue).then((id) => {
       this.snackBar.open('作成されました！', null);
