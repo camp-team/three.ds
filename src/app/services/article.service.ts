@@ -4,7 +4,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { Router } from '@angular/router';
 import { combineLatest, Observable, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
-import { Article, ArticleWithOwner } from '../interfaces/Article';
+import { Article, ArticleWithOwner } from '../interfaces/article';
 import { UserService } from './user.service';
 import firebase from 'firebase';
 

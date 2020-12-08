@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { take, tap } from 'rxjs/operators';
-import { Article, ArticleWithOwner } from 'src/app/interfaces/Article';
+import { Article, ArticleWithOwner } from 'src/app/interfaces/article';
 import { UserData } from 'src/app/interfaces/user-data';
 import { ArticleService } from 'src/app/services/article.service';
 import { AuthService } from 'src/app/services/auth.service';
